@@ -16,14 +16,13 @@ typedef struct Node Node;
 
 Node *head = NULL;
 Node *last = NULL;
-Node *ptr = NULL;
 
 void insert(int position, union Data data) {
    Node *ptr = head; 
    Node *newNode = (struct Node*) malloc(sizeof(Node));
 
    if (position == 0){
-	   	newNode->data = data;
+	newNode->data = data;
 		
 	   if(head == NULL) {
 	      last = newNode;
@@ -39,7 +38,7 @@ void insert(int position, union Data data) {
    }
 
    int a;
-	for(a=0; a < position - 1; a=a+1 ){
+   for(a=0; a < position - 1; a=a+1 ){
       if(ptr == NULL) {
          return;
       } else {           
