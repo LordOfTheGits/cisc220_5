@@ -8,6 +8,7 @@ union Data {
 };
 
 struct Node {
+   int length;
    union Data data;
    struct Node *next;
    struct Node *prev;
