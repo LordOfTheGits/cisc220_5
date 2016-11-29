@@ -22,15 +22,19 @@ void insert(int position, union Data data) {
    Node *newNode = (Node*) malloc(sizeof(Node));
 
    if (position == 0){
-	   newNode->data = data;
-		
-	   if(head == NULL) {
-	      last = newNode;
-	   } else {
-	      head->prev = newNode;
-	   }
-	   newNode->next = head;
-	   head = newNode;
+      newNode->data = data;
+      
+      if(head == NULL) {
+         newNode->length = 1;
+         last = newNode;
+      } else {
+         newNode->length = head->length + 1;
+         head->length = 1;
+         head->prev = newNode;
+      }
+      newNode->next = head;
+      head = newNode;
+      return;
    }
    
    if(head == NULL) {
@@ -38,7 +42,8 @@ void insert(int position, union Data data) {
    }
 
    int a;
-	for(a=0; a < position - 1; a=a+1 ){
+   for(a=0; a < position - 1; a=a+1 ){
+   
       if(ptr == NULL) {
          return;
       } else {           
@@ -47,26 +52,21 @@ void insert(int position, union Data data) {
    }
    newNode->data = data;
 
-   if(ptr == last) {
+   if(ptr->next == NULL) {
       newNode->next = NULL; 
       last = newNode; 
    } else {
       newNode->next = ptr->next;         
       ptr->next->prev = newNode;
    }
-	
+   
+   head->length = head->length+1;
    newNode->prev = ptr; 
    ptr->next = newNode; 
 }
 
 int length(){
-   Node *ptr = head; 
-   int a = 0;
-   while (ptr != NULL) {
-      ptr = ptr->next;
-      a = a + 1;
-   }
-   return a;
+   return head->length;
 }
 
 int main(){
