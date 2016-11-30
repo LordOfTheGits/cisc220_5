@@ -1,24 +1,24 @@
 #include<stdio.h>
 #include<stdlib.h>
 
-union Data {
+union Data { //union to hold node data
    int i;
    float f;
    char str[20];
 };
 
 struct Node {
-   int length;
-   union Data data;
-   struct Node *next;
-   struct Node *prev;
+   int length; //the length of the list
+   union Data data; //data value
+   struct Node *next; //pointer to the next node
+   struct Node *prev; //pointer to the previous node
 };
-typedef struct Node Node; 
+typedef struct Node Node; //type definition
 
-Node *head = NULL;
-Node *last = NULL;
+Node *head = NULL; //initialize pointer to the head node
+Node *last = NULL; //initialize pointer to the last node
 
-void insert(int position, union Data data) {
+void insert(int position, union Data data) { //instert function
    Node *ptr = head; 
    Node *newNode = (Node*) malloc(sizeof(Node));
 
@@ -66,10 +66,10 @@ void insert(int position, union Data data) {
    ptr->next = newNode; 
 }
 
-int length(){
+int length(){ //return the length value stored in the head node
    return head->length;
 }
 
-int main(){
+int main(){ //main stub
 	return 0;
 }
