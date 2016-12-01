@@ -76,6 +76,12 @@ void remove(int index) {
       head = head->next;
       head->prev = NULL;
    }
+	
+   else if (index == 1){
+       head->next = head->next->next;
+       head->next->prev = head;
+   }
+	
    else if (index == (length()-1)){
       last = last->prev;
       last->next = NULL;
