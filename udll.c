@@ -66,6 +66,35 @@ void insert(int position, union Data data) { //instert function
    ptr->next = newNode; 
 }
 
+void remove(int index) {
+   int i = 0;
+   Node *ptr = head;
+   Node *ptr2 = NULL;
+
+   if (index == 0){
+      head->next->length = head->length;
+      head = head->next;
+      head->prev = NULL;
+   }
+   else if (index == (length()-1)){
+      last = last->prev;
+      last->next = NULL;
+   }
+
+   else {
+      while((i < index - 1) && (ptr->next != NULL)){
+         ptr = ptr->next;
+         i++;
+      }
+      ptr2 = ptr->next;
+      ptr->next = ptr2->next;
+      ptr2 = ptr->prev;
+      ptr->prev = ptr2->prev;
+   } 
+   
+   head -> length = head -> length - 1;
+}
+
 int length(){ //return the length value stored in the head node
    return head->length;
 }
