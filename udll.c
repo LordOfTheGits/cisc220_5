@@ -3,8 +3,11 @@
 
 union Data { //union to hold node data
    int i;
+   int* iPtr;
    float f;
-   char str[20];
+   float* fPtr;
+   char c;
+   char* cPtr;
 };
 
 struct Node {
