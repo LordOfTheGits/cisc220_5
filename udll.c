@@ -1,5 +1,6 @@
-#include<stdio.h>
-#include<stdlib.h>
+# include <stdio.h>
+# include <stdlib.h>
+# include "mystring.h"
 
 union Data { //union to hold node data
    int i;
@@ -69,7 +70,11 @@ void insert(int position, union Data data) { //instert function
    ptr->next = newNode; 
 }
 
-void remove(int index) {
+int length(){ //return the length value stored in the head node
+   return head->length;
+}
+
+void removeNode(int index) {
    int i = 0;
    Node *ptr = head;
    Node *ptr2 = NULL;
@@ -104,10 +109,36 @@ void remove(int index) {
    head -> length = head -> length - 1;
 }
 
-int length(){ //return the length value stored in the head node
-   return head->length;
-}
+union Data get (int index)
+{
+   //finds length to see if it should traverse through the list forawds or backwards
+   int len = length();
+   int half = len/2;
+   
+   //if the index is in the first half, go through forwards
+   if (index < half)
+   {
+      Node *ptr = head;
+      for (int x = 0; x < index; x++)
+      {
+         ptr = ptr->next; //snce first node is actually the length, go to next one
+      }
 
-int main(){ //main stub
-	return 0;
+      return ptr->data;
+   }
+
+   //else, go through backwards
+   else
+   {
+      Node *ptrr = last;
+
+      for (int y = len; y > index; y--)
+      {
+         ptrr = ptrr->prev;  //**
+      }
+      ptrr = ptrr->next; //**the last node is actually the last node so this will go
+                         //one too many previously
+      return ptrr->data;
+   }
+
 }
