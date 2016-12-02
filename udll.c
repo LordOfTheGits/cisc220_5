@@ -1,6 +1,4 @@
-# include <stdio.h>
 # include <stdlib.h>
-# include "mystring.h"
 
 union Data { //union to hold node data
    int i;
